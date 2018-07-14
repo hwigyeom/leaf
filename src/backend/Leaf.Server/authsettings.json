@@ -1,0 +1,7 @@
+{
+  "authentication": {
+    "issuer": "ensys",
+    "audience": "ensys",
+    "expires": 30
+  }
+}

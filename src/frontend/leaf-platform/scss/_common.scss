@@ -1,0 +1,94 @@
+// Common Styles
+@import 'variables';
+
+// 웹 폰트 정의
+@font-face {
+  font-family: $font-name;
+  font-weight: normal;
+  src: url('../fonts/NanumBarunGothicWeb.eot');
+  src: url('../fonts/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/NanumBarunGothicWeb.woff') format('woff'),
+  url('../fonts/NanumBarunGothicWeb.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-weight: bold;
+  src: url('../fonts/NanumBarunGothicWebBold.eot');
+  src: url('../fonts/NanumBarunGothicWebBold.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/NanumBarunGothicWebBold.woff') format('woff'),
+  url('../fonts/NanumBarunGothicWebBold.ttf') format('truetype');
+}
+
+html {
+  box-sizing: border-box;
+  font-family: $font-name, 'NanumBarunGothic', 'Malgun Gothic', 'Apple SD Gothic Neo', Dotum, Arial, Helvetica, sans-serif;
+}
+
+*, *:before *:after, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html, body {
+  font-size: $font-size;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $body-bg;
+}
+
+a {
+  color: $link-color;
+  text-decoration: $link-decoration;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:focus, &:visited {
+    color: $link-color;
+    text-decoration: $link-decoration;
+  }
+}
+
+#app {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+
+  + .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #fff;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+
+    &::after {
+      width: 17px * 2;
+      height: 17px * 2;
+      background: transparent url(images/loading.svg?fill=#a3a3a3) no-repeat;
+      background-size: cover;
+      content: '';
+      display: block;
+      animation: loading-spin 2s steps(4) infinite;
+    }
+  }
+}
+
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

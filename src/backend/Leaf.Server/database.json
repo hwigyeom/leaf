@@ -1,0 +1,19 @@
+{
+  "databases": [
+    {
+      "name": "EnSysDB",
+      "type": "SqlServer",
+      "server": "ensys.db.ntils.com,12433",
+      "store": "Plain",
+      "database": "DIAGNOSTIC",
+      "userid": "DIAGNOSTIC",
+      "password": "ensysdiag1!",
+      "default": true
+    }
+  ],
+  "queries": {
+    "baseDir": "./Queries",
+    "useDbNameDir": false,
+    "useDbTypeDir": false
+  }
+}

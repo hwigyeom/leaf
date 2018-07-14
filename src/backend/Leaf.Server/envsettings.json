@@ -1,0 +1,23 @@
+{
+  "environments": {
+    "global": {
+      "culture": "ko",
+      "title": "E&SYS",
+      "subTitle": "관리회계시스템",
+      "theme": "blue",
+      "keys": {
+        "token": "ensys:auth:token",
+        "acc": "ensys:auth:acc",
+        "sid": "ensys:auth:sid"
+      }
+    },
+    "login": {
+      "ci": "/images/login-ci.svg",
+      "banner": "/images/login-banner.png",
+      "product": "/images/login-solution.svg",
+      "background": "/images/login-bg.png"
+    },
+    "main": {
+    }
+  }
+}

@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Queries\**\*.sql"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App">
+      <Version>2.1.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Leaf.Core\Leaf.Core.csproj"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ModuleFiles Include="$(TargetDir)*.dll;$(TargetDir)*.pdb" Exclude="$(TargetDir)Leaf.*" DestinationPath="$(SolutionDir)/src/backend/Leaf.Server/Modules/%(Filename)%(Extension)"/>
+  </ItemGroup>
+  <Target Name="PublishModule" AfterTargets="PostBuildEvent" Inputs="@(ModuleFiles)" Outputs="@(ModuleFiles->'%(DestinationPath)')">
+    <WriteLinesToFile File="$(SolutionDir)src/backend/Leaf.Server/app_offline.htm"/>
+    <Copy SourceFiles="@(ModuleFiles)" DestinationFiles="@(ModuleFiles->'%(DestinationPath)')"/>
+    <Delete Files="$(SolutionDir)src/backend/Leaf.Server/app_offline.htm"/>
+  </Target>
+</Project>

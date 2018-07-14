@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <RootNamespace>Leaf</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Dapper">
+            <Version>1.50.5</Version>
+        </PackageReference>
+        <PackageReference Include="Microsoft.AspNetCore.App">
+            <Version>2.1.2</Version>
+        </PackageReference>
+    </ItemGroup>
+</Project>

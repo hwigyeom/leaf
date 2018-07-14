@@ -1,0 +1,7 @@
+#app {
+  + .loading {
+    &::after {
+      background-image: url(../images/loading.svg?fill=#4a80f6);
+    }
+  }
+}

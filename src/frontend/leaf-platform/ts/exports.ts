@@ -1,4 +1,5 @@
 export * from './authorization/export';
+export * from './components/exports';
 export * from './dependencyInjection/exports';
 export * from './environments/exports';
 export * from './network/exports';

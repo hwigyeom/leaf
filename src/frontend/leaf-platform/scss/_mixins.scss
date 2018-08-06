@@ -1,0 +1,25 @@
+@import 'functions';
+
+// Mixins
+
+@mixin spinner($size: 17px, $color: #a3a3a3) {
+  $color: replace-url-string($color);
+  width: $size;
+  height: $size;
+  background: transparent url(images/loading.svg?fill=#{$color}) no-repeat;
+  background-size: cover;
+  animation: loading-spin 1s steps(4) infinite;
+  transition: background-image 1s ease;
+
+  @keyframes loading-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin spinner-theme($color) {
+  $color: replace-url-string($color);
+  background-image: url(images/loading.svg?fill=#{$color});
+  transition: background-image 1s ease;
+}

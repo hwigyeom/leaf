@@ -1,0 +1,152 @@
+// 로그인 페이지
+@import '../variables';
+@import '../functions';
+@import '../mixins';
+
+$login-form-width: 250px !default;
+$login-error-color: state-color('danger') !default;
+$login-form-area-width: 476px !default;
+$login-area-border-color: rgba(#fff, 0.2) !default;
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  min-height: 100%;
+  background: transparent no-repeat center center fixed;
+  background-size: cover;
+
+  header {
+    padding: 0 185px 0 143px;
+    display: flex;
+    align-items: center;
+    height: 101px;
+    border-bottom: 1px solid $login-area-border-color;
+
+    > img {
+      max-height: 18px;
+    }
+  }
+
+  .login-middle {
+    padding: 0 185px 0 143px;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 603px;
+    border-bottom: 1px solid $login-area-border-color;
+  }
+
+  .login-banner {
+    padding-top: 68px;
+
+    > img {
+      width: $login-form-width;
+    }
+  }
+
+  .login-form-area {
+    margin: -1px 0;
+    width: $login-form-area-width;
+    background-color: rgba(#fff, 0.7);
+
+    > form {
+      padding: 0 floor(($login-form-area-width - $login-form-width) / 2);
+    }
+  }
+
+  .login-solution {
+    margin: 106px 0 100px 0;
+    text-align: center;
+  }
+
+  form#login {
+    input[type=text], input[type=password], input[type=email] {
+      width: 100%;
+      height: 36px;
+      margin-bottom: 13px;
+      padding: 0 28px 0 7px;
+      border: 0;
+      background: transparent no-repeat right 6px center;
+      border-bottom: 1px solid #b9b9b9;
+      border-radius: 0;
+      font-size: 13px;
+      color: #000;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: #888;
+      }
+
+      &:-webkit-autofill {
+        background-color: transparent !important;
+      }
+
+      &.error {
+        border-color: $login-error-color;
+      }
+    }
+
+    #uid {
+      background-image: url('../images/ico-login-user.svg?fill=#{replace-url-string($login-icon-color)}&fill-opacity=.3');
+    }
+
+    #pwd {
+      background-image: url('../images/ico-login-lock.svg?fill=#{replace-url-string($login-icon-color)}&fill-opacity=.3');
+    }
+
+    #uid.error, #uid.error {
+      background-image: url('../images/ico-login-error.svg') !important;
+    }
+
+    button#login-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin: 36px 0 0 0;
+      background-color: rgba(#000, 0.3);
+      border: 0;
+      border-radius: 5px;
+      height: 42px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+
+      &:focus {
+        outline: none;
+      }
+
+      &.loading {
+        cursor: default;
+
+        &::before {
+          content: '';
+          display: block;
+          margin-left: -25px;
+          @include spinner($color: #fff);
+        }
+      }
+    }
+
+    .find-account {
+      margin-top: 8px;
+      text-align: right;
+
+      > a {
+        color: #444;
+        display: inline-block;
+        padding: 0 7px 0 6px;
+        background: transparent url('../images/login-find-splitter.svg') no-repeat right center;
+
+        &:last-child {
+          background: none;
+          padding-right: 2px;
+        }
+      }
+    }
+  }
+}

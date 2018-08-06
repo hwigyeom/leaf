@@ -1,8 +1,9 @@
-<% with(htmlWebpackPlugin.options.replacement) { %>
-<!DOCTYPE html>
+<% with(htmlWebpackPlugin.options.replacement) { %><!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" href="/css/leaf.css?v<%= version %>" data-role="leaf" charset="UTF-8">
 </head>
 <body>
@@ -10,10 +11,6 @@
 <script src="/js/jquery.min.js?v<%= jquery %>" data-role="jquery" charset="UTF-8"></script>
 <script src="/js/kendo.web.min.js?v<%= kendo %>" data-role="kendo" charset="UTF-8"></script>
 <script src="/js/leaf.js?v<%= version %>" data-role="leaf" charset="UTF-8"></script>
-<script>
-  leaf.version = '<%= version %>';
-  leaf.context.run();
-</script>
+<script>leaf.context.run();</script>
 </body>
-</html>
-<% } %>
+</html><% } %>

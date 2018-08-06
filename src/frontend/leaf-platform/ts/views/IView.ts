@@ -1,3 +1,7 @@
 export interface IView {
-  initialize(): Promise<void>;
+  template: any;
+  templateData?: {};
+  preInit?: () => Promise<void> | void;
+  initialize?: () => Promise<void> | void;
+  load?: () => Promise<void> | void;
 }

@@ -1,0 +1,46 @@
+@import '../variables';
+@import '../mixins';
+@import '../functions';
+
+.lf-checkbox-wrapper {
+  display: inline-flex;
+  align-items: center;
+
+  input[type=checkbox] {
+    opacity: 0;
+    margin: 0;
+    line-height: $checkbox-size;
+    width: $checkbox-size;
+    border: 0;
+
+    + label {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1em;
+      margin-left: -$checkbox-size;
+
+      &::before {
+        display: inline-block;
+        content: '';
+        height: $checkbox-size;
+        width: $checkbox-size;
+        margin: 0 $checkbox-margin 0 0;
+        border: 1px solid transparent;
+        background-color: #fff;
+      }
+    }
+
+    &:checked {
+      + label::before {
+        border: none;
+        background: url('../images/ico-check.svg') no-repeat center center;
+      }
+    }
+
+    &:disabled {
+      + label::before {
+        border: none;
+      }
+    }
+  }
+}

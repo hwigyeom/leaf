@@ -1,5 +1,6 @@
 // Common Styles
 @import 'variables';
+@import 'mixins';
 
 // 웹 폰트 정의
 @font-face {
@@ -22,19 +23,28 @@
 
 html {
   box-sizing: border-box;
-  font-family: $font-name, 'NanumBarunGothic', 'Malgun Gothic', 'Apple SD Gothic Neo', Dotum, Arial, Helvetica, sans-serif;
 }
 
-*, *:before *:after, *::before, *::after {
+*, *:before, *:after, *::before, *::after {
   box-sizing: inherit;
 }
 
 html, body {
+  font-family: $font-name, 'NanumBarunGothic', 'Malgun Gothic', 'Apple SD Gothic Neo', Dotum, Arial, Helvetica, sans-serif;
   font-size: $font-size;
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+button {
+  cursor: pointer;
 }
 
 body {
@@ -54,6 +64,13 @@ a {
     color: $link-color;
     text-decoration: $link-decoration;
   }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+input:-webkit-autofill:hover {
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 #app {
@@ -76,19 +93,10 @@ a {
     position: fixed;
 
     &::after {
-      width: 17px * 2;
-      height: 17px * 2;
-      background: transparent url(images/loading.svg?fill=#a3a3a3) no-repeat;
-      background-size: cover;
       content: '';
       display: block;
-      animation: loading-spin 2s steps(4) infinite;
-    }
-  }
-}
 
-@keyframes loading-spin {
-  to {
-    transform: rotate(360deg);
+      @include spinner(17px * 2);
+    }
   }
 }

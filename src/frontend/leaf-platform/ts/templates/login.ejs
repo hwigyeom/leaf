@@ -1,0 +1,23 @@
+<div class="login-wrapper">
+  <header><img src="<%= ci %>" alt="<%= ciTitle || '' %>"></header>
+  <section class="login-middle">
+    <section class="login-banner"><img src="<%= banner %>" alt="banner"></section>
+    <section class="login-form-area">
+      <div class="login-solution"><img src="<%= product %>" alt="<%= productTitle || '' %>"></div>
+      <form id="login">
+        <leaf:textbox id="uid" placeholder="ID" autocomplete="false" autocapitalize="false" autofocus="false"/>
+        <leaf:password type="password" id="pwd" placeholder="Password" autocomplete="false"/>
+        <leaf:checkbox id="sid" checked="true">아이디 저장</leaf:checkbox>
+        <button type="button" id="login-button">Login</button>
+
+        <div class="find-account">
+          <a id="find-uid" href="#">아이디 찾기</a>
+          <a id="find-pwd" href="#">비밀번호 찾기</a>
+        </div>
+      </form>
+    </section>
+  </section>
+</div>
+<style>.login-wrapper {
+    background-image: url("<%= background %>");
+  }</style>

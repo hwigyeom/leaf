@@ -7,14 +7,23 @@ import { HttpService } from './network/HttpService';
 import { UrlService } from './network/UrlService';
 import * as debug from './utils/debugUtils';
 import { ApplicationContainer } from './views/ApplicationContainer';
+import { ViewLoader } from './views/ViewLoader';
+
+export * from './exports';
 
 export class ApplicationContext {
   public static appName = '_leaf_app_';
 
   public readonly dependencies: DependencyManager;
 
+  private _container: ApplicationContainer;
+
   constructor() {
     this.dependencies = new DependencyManager();
+  }
+
+  public get container(): ApplicationContainer {
+    return this._container;
   }
 
   public async run(): Promise<void> {
@@ -38,6 +47,10 @@ export class ApplicationContext {
     this.dependencies
       .registerService(AuthenticationService.authenticationServiceKey, authService, InstanceType.Instance);
 
+    // 뷰 로더
+    const viewLoader = new ViewLoader();
+    this.dependencies.registerService(ViewLoader.viewLoaderKey, viewLoader, InstanceType.Instance);
+
     // dependencies 에 등록된 종속성 항목 등록
     // 서비스 등록 // TODO: 종속성 주입 설정에 대한 고도화
     for (const key of Object.keys(dependencies.services)) {
@@ -52,12 +65,9 @@ export class ApplicationContext {
       this.dependencies.registerTemplate(key, dependencies.templates[key]);
     }
 
-    // 공통 환경 설정 정보 가져오기
-    await envService.loadGlobalEnvironments();
-
     // 어플리케이션 컨테이너 설정
-    const container = new ApplicationContainer(envService.global);
-    await container.initialize();
+    this._container = new ApplicationContainer();
+    await this._container.initialize();
   }
 }
 
@@ -68,7 +78,7 @@ Object.defineProperty(window, ApplicationContext.appName, {
   value: context
 });
 
-// context.run();
-
-export * from './exports';
 export { context };
+
+declare const VERSION: string;
+export const version = VERSION;

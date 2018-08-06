@@ -1,0 +1,39 @@
+@import '../variables';
+@import '../functions';
+
+.lf-checkbox-wrapper {
+  input[type=checkbox] {
+    + label {
+      &::before {
+        border-color: $checkbox-border;
+      }
+
+      &:hover {
+        &::before {
+          border-color: $checkbox-hover-border;
+          background-color: $checkbox-hover-bg;
+        }
+      }
+    }
+
+    &:checked {
+      + label {
+        &::before {
+          background-color: $checkbox-checked-bg;
+        }
+      }
+    }
+
+    &:disabled {
+      + label::before {
+        background-color: $checkbox-disabled-bg;
+      }
+
+      &:checked {
+        + label::before {
+          background: $checkbox-disabled-check-bg url('../images/ico-check.svg?fill=#{replace-url-string(#fafafa)}');
+        }
+      }
+    }
+  }
+}

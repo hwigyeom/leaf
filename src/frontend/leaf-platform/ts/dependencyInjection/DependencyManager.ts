@@ -87,7 +87,7 @@ export class DependencyManager {
    * @param template 템플릿
    */
   public registerTemplate(key: string, template: any): void {
-    this.templates.register(key, template);
+    this.templates.register(key, template, InstanceType.Instance);
   }
 
   /**

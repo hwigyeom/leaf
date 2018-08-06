@@ -38,6 +38,7 @@ export async function setKendoCulture(culture: string): Promise<void> {
       $script.attr('src', `/js/cultures/kendo.culture.${culture}.min.js?v${kendo.version}`);
       $script.attr('data-role', 'kendo-culture');
       $script.attr('data-culture', culture);
+      $script.attr('charset', 'UTF-8');
 
       if ($old.length > 0) {
         $old.remove();

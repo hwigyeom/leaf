@@ -1,0 +1,19 @@
+@import '../variables';
+@import '../functions';
+@import '../mixins';
+
+.login-wrapper form#login {
+  #uid:focus {
+    background-image: url('../images/ico-login-user.svg?fill=#{replace-url-string($login-icon-focus-color)}&fill-opacity=1');
+  }
+
+  #pwd:focus {
+    background-image: url('../images/ico-login-lock.svg?fill=#{replace-url-string($login-icon-focus-color)}&fill-opacity=1');
+  }
+
+  button#login-button {
+    &:hover, &:focus, &:active, &.loading {
+      background: linear-gradient(to bottom, $login-button-gradient-start, $login-button-gradient-end);
+    }
+  }
+}

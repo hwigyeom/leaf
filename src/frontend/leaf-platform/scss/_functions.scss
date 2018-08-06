@@ -1,0 +1,48 @@
+@import 'variables';
+
+// Retrieve color Sass maps
+@function color($key: "blue") {
+  @return map-get($colors, $key);
+}
+
+@function theme-color($key: "primary") {
+  @return map-get($theme-colors, $key);
+}
+
+@function gray($key: "100") {
+  @return map-get($grays, $key);
+}
+
+// Retrieve color Sass maps
+@function color($key: "blue") {
+  @return map-get($colors, $key);
+}
+
+@function state-color($key: "primary") {
+  @return map-get($state-colors, $key);
+}
+
+@function gray($key: "100") {
+  @return map-get($grays, $key);
+}
+
+//  Helper function to replace characters in a string
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+            str-replace(str-slice($string, $index +
+            str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+@function replace-url-string($string) {
+  $string: #{$string};
+  $string: str-replace($string, '"', '\'');
+  $string: str-replace($string, '<', '%3C');
+  $string: str-replace($string, '>', '%3E');
+  $string: str-replace($string, '&', '%26');
+  $string: str-replace($string, '#', '%23');
+  @return $string;
+}

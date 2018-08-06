@@ -1,7 +1,9 @@
+@import "../mixins";
+
 #app {
   + .loading {
     &::after {
-      background-image: url(../images/loading.svg?fill=#4a80f6);
+      @include spinner-theme(#4a80f6);
     }
   }
 }

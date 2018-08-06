@@ -6,6 +6,7 @@ import { IGlobalEnvironments } from './IGlobalEnvironments';
 import { ILoginEnvironments } from './ILoginEnvironments';
 
 const GLOBAL_ENV_URL = '/env/global';
+const LOGIN_ENV_URL = 'env/login';
 
 interface IEnvironmentsItem<T> {
   loaded: boolean;
@@ -14,6 +15,7 @@ interface IEnvironmentsItem<T> {
 
 export class EnvironmentService implements IHttpService {
   public static readonly environmentServiceKey: string = '_environments_';
+
   private static readonly defaultGlobalEnv: IGlobalEnvironments = {
     culture: 'ko',
     title: 'Leaf Application Framework',
@@ -23,6 +25,15 @@ export class EnvironmentService implements IHttpService {
       token: 'leaf:auth:token',
       sid: 'leaf:auth:sid'
     }
+  };
+
+  private static readonly defaultLoginEnv: ILoginEnvironments = {
+    ci: '/images/login-ci.svg',
+    ciTitle: '',
+    banner: '/images/login-banner.png',
+    product: '/images/login-solution.svg',
+    productTitle: '',
+    background: '/images/login-bg.png'
   };
 
   @InjectHttpService
@@ -45,6 +56,14 @@ export class EnvironmentService implements IHttpService {
     return this._global.env;
   }
 
+  public get login() {
+    if (!this._login.loaded) {
+      throw new Error(`## Leaf Core: 로그인 환경 변수가 아직 로드되지 않았습니다.`);
+    }
+
+    return this._login.env;
+  }
+
   public async loadGlobalEnvironments(): Promise<void> {
     try {
       const serverEnv = await this.http.data<IGlobalEnvironments>(GLOBAL_ENV_URL, HttpMethod.GET);
@@ -56,6 +75,21 @@ export class EnvironmentService implements IHttpService {
       if (!this._global.loaded) {
         this._global.loaded = true;
         this._global.env = EnvironmentService.defaultGlobalEnv;
+      }
+    }
+  }
+
+  public async loadLoginEnvironments(): Promise<void> {
+    try {
+      const serverEnv = await this.http.data<ILoginEnvironments>(LOGIN_ENV_URL, HttpMethod.GET);
+
+      this._login.loaded = true;
+      this._login.env = $.extend({}, true, EnvironmentService.defaultLoginEnv, serverEnv);
+    } catch (e) {
+      debug.error(e);
+      if (!this._login.loaded) {
+        this._login.loaded = true;
+        this._login.env = EnvironmentService.defaultLoginEnv;
       }
     }
   }

@@ -6,5 +6,8 @@ export const dependencies = {
     Login: require('./views/Login').Login,
     Main: require('./views/Main').Main
   },
-  templates: {}
+  templates: {
+    Login: require('./templates/login.ejs'),
+    Main: require('./templates/main.ejs')
+  }
 };

@@ -53,6 +53,10 @@ const cssBannerPlugin = new webpack.BannerPlugin({
   test: /\.css$/
 });
 
+const defines = new webpack.DefinePlugin({
+  VERSION: JSON.stringify(pkg.version)
+});
+
 // 기본 설정
 const getBaseConfig = (mode: string): webpack.Configuration => {
   return {
@@ -67,7 +71,7 @@ const getBaseConfig = (mode: string): webpack.Configuration => {
       libraryTarget: 'umd',
       library: '[name]',
       umdNamedDefine: true,
-      publicPath: '/',
+      publicPath: '/'
     },
 
     resolve: {
@@ -101,7 +105,7 @@ const getBaseConfig = (mode: string): webpack.Configuration => {
               {loader: 'css-loader', options: {sourceMap: mode === 'development', importLoaders: 1}},
               {loader: 'postcss-loader', options: {sourceMap: true}},
               {loader: 'resolve-url-loader', options: {keepQuery: true}},
-              {loader: 'svg-transform-loader/encode-query'},
+              {loader: 'svg-transform-loader'},
               {loader: 'sass-loader', options: {sourceMap: true}},
             ],
           }),
@@ -152,6 +156,7 @@ const getBaseConfig = (mode: string): webpack.Configuration => {
     plugins: [
       new CleanupPlugin(),
       bannerPlugin,
+      defines,
       styleLint,
       sassExtractPlugin,
       cssBannerPlugin,
